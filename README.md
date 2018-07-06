@@ -2,13 +2,17 @@
 
 ## Problem Statement
 
-We've seen that we can easily manipulate nodes in the DOM, and even create and
-remove elements at will. But how can we actually interact with nodes on the
-page? We listen for them.
+We've seen that we can select and manipulate nodes in the DOM using JavaScript.
+We've even seen that we can create and remove elements. But wouldn't it be more
+interesting if we made those types of thing happen _when_ we did something:
+double-clicked on something, pushed a button, shook our mouse in a circle.
+Those actions are called "events." In JavaScript we can "listen" for events and
+use them to call functions that update the DOM. In this lesson, we'll learn how
+to do just that.
 
 ## Objectives
 
-1. Add `addEventListener()` to a DOM node
+1. Demonstrate using  `addEventListener()` to a DOM node
 2. Prevent default behavior
 3. Explain the difference between bubbling and capturing events
 4. Add `stopPropogation()` to a DOM node
@@ -17,7 +21,7 @@ page? We listen for them.
 
 If you are using the Learn IDE available in your browser, you will automatically
 clone down the files you need when you click 'Open IDE'. In order to view
-index.html, you will need to use `httpserver` to open the HTML page.  In the
+`index.html`, you will need to use `httpserver` to open the HTML page.  In the
 terminal, type `httpserver` and press enter. You will see that `Your server is
 running at ...` followed by a string of numbers and dots.  This string is your
 temporary IP address that is hosting your `index.html` file.  Copy this string
@@ -35,9 +39,9 @@ find the `index.html` file, which you can then manually open up in the browser.
 
 ## Add `addEventListener()` to a DOM Node
 
-Adding an event listener to a DOM node is not a complex process — we can call
-`addEventListener()` on the node. `addEventListener()` takes two arguments: the
-name of the event, and a function to handle the event.
+To add an event we can call `addEventListener()` on the node.
+`addEventListener()` takes two arguments: the name of the event, and a function
+to handle the event.
 
 Let's start by adding a listener for `click` events to the `main#main` element
 in `index.html`. Once you've opened `index.html` in the browser, copy and paste
@@ -55,24 +59,24 @@ Now if you click on the `main` element (you can click its text, "My ID is
 'main'!"), you should see an alert: `'I was clicked!'.` How does this work?
 
 The first argument, `'click'`, is the name of the event we're listening for.
+
 Click events make up the majority of events listened you'll use, but other
 events you might use include `change`, `'keydown'`, `'keyup'`, `'load'`,
-`'mouseover'`, `'mouseout'`.
-You can find more possible events on [MDN][MDN].
+`'mouseover'`, `'mouseout'`.  You can find more possible events on [MDN][MDN].
 
-The second argument is a function that accepts the event as its argument. The
-event has a number of useful properties on it. `keypress`, `keydown`, and
-`keyup` events will have a `which` property that tells us which key was pressed.
-Try it out by copying and pasting the following in your js console in the
-browser:
+The second argument is a function that accepts an event object as its argument.
+
+The event has a number of useful properties on it. `keypress`, `keydown`, and
+`keyup` events will have a `which` property that tells us which key was
+pressed.  Try it out by copying and pasting the following in your js console in
+the browser:
 
 ```js
 const input = document.querySelector('input')
-
-input.addEventListener('keydown', function(e) {
-  console.log(e.which)
-})
+input.addEventListener('keydown', e => console.log(e.which))
 ```
+
+_Don't forget arrow functions!_
 
 You'll notice that, for example, pressing "enter" logs `13` in console, while
 pressing "a" logs `65`. What do other keys log in the console?
@@ -86,7 +90,7 @@ console:
 ```js
 const input = document.querySelector('input')
 
-input.addEventListener('keydown', function(e) {
+input.addEventListener('keydown', e => {
   if (e.which === 71) {
     return e.preventDefault()
   }
@@ -96,9 +100,13 @@ input.addEventListener('keydown', function(e) {
 Now try to enter "g" in the input — no can do!
 
 Every DOM `event` comes with a `preventDefault` property. `preventDefault` is a
-function that when called will prevent the default event from taking place. It
+function that, when called, will prevent the default event from taking place. It
 provides us an opportunity to intercept and change user interactions, usually in
 more helpful ways than preventing them from typing "g".
+
+You can probably think of a couple of web pages that have prevented you from
+ESC-keying their ad away or one that wouldn't let you paste your password on
+that "repeat to confirm" entry field. Yep, that was JavaScript.
 
 Another related event property is called `stopPropagation`. Like
 `preventDefault`, `stopPropagation` is a function that, when called, interrupts
@@ -130,8 +138,8 @@ function bubble(e) {
   console.log(this.firstChild.nodeValue.trim() + ' bubbled')
 }
 
-for (let i = 0; i < divs.length; i++) {
-  divs[i].addEventListener('click', bubble)
+for (const aDiv of divs) {
+  divs[i].addEventListener('click', bubble);
 }
 ```
 
@@ -163,7 +171,7 @@ function capture(e) {
   console.log(this.firstChild.nodeValue.trim() + ' captured')
 }
 
-for (let i = 0; i < divs.length; i++) {
+for (const aDiv of divs) {
   // set the third argument to `true`!
   divs[i].addEventListener('click', capture, true)
 }
@@ -220,7 +228,7 @@ function bubble(e) {
   console.log(this.firstChild.nodeValue.trim() + ' bubbled')
 }
 
-for (let i = 0; i < divs.length; i++) {
+for (const aDiv of divs) {
   divs[i].addEventListener('click', bubble)
 }
 ```
@@ -246,9 +254,8 @@ work, and how to intercept user interactions with `e.preventDefault()` and
 - [StackOverflow - Bubbling and Capturing][SO]
 - [QuirksMode - Event order][QM]
 
-<p class='util--hide'>View <a href='https://learn.co/lessons/listening-to-dom-nodes'>Listening To Nodes</a> on Learn.co and start learning to code for free.</p>
-[instructions](http://help.learn.co/workflow-tips/github/how-to-manually-open-a-lab)
-[help-center](http://help.learn.co/the-learn-ide/common-ide-questions/viewing-html-pages-in-the-learn-ide)
-[MDN](https://developer.mozilla.org/en-US/docs/Web/Events)
-[SO](http://stackoverflow.com/questions/4616694/what-is-event-bubbling-and-capturing)
-[QM](http://www.quirksmode.org/js/events_order.html)
+[instructions]: http://help.learn.co/workflow-tips/github/how-to-manually-open-a-lab
+[help-center]: http://help.learn.co/the-learn-ide/common-ide-questions/viewing-html-pages-in-the-learn-ide
+[MDN]: https://developer.mozilla.org/en-US/docs/Web/Events
+[SO]: http://stackoverflow.com/questions/4616694/what-is-event-bubbling-and-capturing
+[QM]: http://www.quirksmode.org/js/events_order.html
