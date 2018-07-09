@@ -20,7 +20,7 @@ to do just that.
 #### Instructions for In-Browser Learn IDE Users
 
 If you are using the Learn IDE available in your browser, use `httpserver` to
-launch the web server. You will see that `Your server is running at ...`
+launch the web server. You will see the message `Your server is running at ...`
 followed by a string of numbers and dots.  This string is your temporary IP
 address that is hosting your `index.html` file.  Copy this string of numbers,
 open a new tab and past the string in to the URL bar.
