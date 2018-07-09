@@ -19,13 +19,11 @@ to do just that.
 
 #### Instructions for In-Browser Learn IDE Users
 
-If you are using the Learn IDE available in your browser, you will automatically
-clone down the files you need when you click 'Open IDE'. In order to view
-`index.html`, you will need to use `httpserver` to open the HTML page.  In the
-terminal, type `httpserver` and press enter. You will see that `Your server is
-running at ...` followed by a string of numbers and dots.  This string is your
-temporary IP address that is hosting your `index.html` file.  Copy this string
-of numbers, open a new tab and past the string in to the URL bar.
+If you are using the Learn IDE available in your browser, use `httpserver` to
+launch the web server. You will see that `Your server is running at ...`
+followed by a string of numbers and dots.  This string is your temporary IP
+address that is hosting your `index.html` file.  Copy this string of numbers,
+open a new tab and past the string in to the URL bar.
 
 #### Instructions for Students Using an Stand Alone Text-Editor
 
@@ -234,6 +232,11 @@ for (const aDiv of divs) {
 ```
 
 Now try clicking on any node — you should only see one log statement!
+
+## Moving On
+
+In order to move on from this lesson enter `learn`. If your code passes the
+test, use `learn submit` to close out this lab and move on.
 
 ## Conclusion
 
