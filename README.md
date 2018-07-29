@@ -171,7 +171,7 @@ function capture(e) {
 
 for (const aDiv of divs) {
   // set the third argument to `true`!
-  divs[3].addEventListener('click', capture, true)
+  aDiv.addEventListener('click', capture, true)
 }
 ```
 
