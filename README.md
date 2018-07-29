@@ -227,7 +227,7 @@ function bubble(e) {
 }
 
 for (const aDiv of divs) {
-  divs[i].addEventListener('click', bubble)
+  aDiv.addEventListener('click', bubble)
 }
 ```
 
