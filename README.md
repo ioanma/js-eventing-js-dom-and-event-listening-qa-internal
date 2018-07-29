@@ -137,7 +137,7 @@ function bubble(e) {
 }
 
 for (const aDiv of divs) {
-  divs[i].addEventListener('click', bubble);
+  aDiv.addEventListener('click', bubble);
 }
 ```
 
@@ -163,7 +163,7 @@ What about capturing? In order to capture, we need to set the third argument to
 `addEventListener` to `true`. Let's try it out.
 
 ```js
-divs = document.querySelectorAll('div')
+let divs = document.querySelectorAll('div')
 
 function capture(e) {
   console.log(this.firstChild.nodeValue.trim() + ' captured')
@@ -171,7 +171,7 @@ function capture(e) {
 
 for (const aDiv of divs) {
   // set the third argument to `true`!
-  divs[i].addEventListener('click', capture, true)
+  aDiv.addEventListener('click', capture, true)
 }
 ```
 
@@ -227,7 +227,7 @@ function bubble(e) {
 }
 
 for (const aDiv of divs) {
-  divs[i].addEventListener('click', bubble)
+  aDiv.addEventListener('click', bubble)
 }
 ```
 
