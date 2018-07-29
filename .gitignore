@@ -41,3 +41,7 @@ jspm_packages
 
 # Learn-specific .results.json
 .results.json
+
+# OS auto-generated files
+.idea/
+.DS_Store
