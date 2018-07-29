@@ -216,6 +216,7 @@ fairly generic event that we want to only hit its target. That's where
 Let's rewrite the bubbling example to stop propagation so that only one event is
 triggered (remember to reload the page before entering this code!):
 
+
 ```js
 const divs = document.querySelectorAll('div')
 
